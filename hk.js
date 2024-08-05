@@ -24,13 +24,13 @@ browserWillLaunchPromise.then(function(browserInstance){
     let hackerrankPromise = newTab.goto(loginLink);
     return hackerrankPromise;
 }).then(function(){
-    let emailWillbeEnteredPromise = page.type("input[id='input-1']", email, {delay:150});
+    let emailWillbeEnteredPromise = page.type("input[name='username']", email, {delay:150});
     return emailWillbeEnteredPromise;
 }).then(function(){
-    let passwordWillbeEnteredPromises = page.type("input[id='input-2']", password, {delay:150});
+    let passwordWillbeEnteredPromises = page.type("input[name='password']", password, {delay:150});
     return passwordWillbeEnteredPromises;
 }).then(function(){
-    let loginButtonClickPromise = page.click('button[data-analytics="LoginPassword"]', {delay:80});
+    let loginButtonClickPromise = page.click('button[data-hr-focus-item="private"]', {delay:80});
     return loginButtonClickPromise;
 }).then(function(){
     let algoSecClickedPromise = waitAndClick('a[data-attr1="algorithms"]', page);
@@ -78,7 +78,7 @@ function questionSolver(page, question, answer){
         }).then(function(){
             return page.type('.input.text-area.custominput.auto-width', answer, {delay : 20});
         }).then(function(){
-            let ctrlIsPressedPromise = page.keyboard.down("Control");
+            let ctrlIsPressedPromise = page.keyboard.down("Control"); // TODO: to run this script in mac, here we need to change it to Meta
             return ctrlIsPressedPromise;
         }).then(function(){
             let AisPressedPromise = page.keyboard.press("A", {delay : 100});
